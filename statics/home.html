@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>easy bind</title>
+    <link rel="stylesheet" href="/statics/spectre.min.css"></link>
+    <link rel="stylesheet" href="/statics/controle.css"></link>
+    <script type="text/javascript" src="/statics/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/statics/controle.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>bind settings</h1>
+        <div class="form-group">
+            <label class="form-switch">
+            <input type="checkbox" />
+            <i class="form-icon"></i> toggle External , Internal
+        </label>
+        </div>
+        <ul class="tab inline-flex">
+            <li class="tab-item active " id="toggle_zone">
+                <a href="#zone">
+                            zone
+                        </a>
+            </li>
+            <li class="tab-item" id="toggle_acl">
+                <a href="#acl">
+                            acl
+                        </a>
+            </li>
+            <li class="tab-item" id="toggle_key">
+                <a href="#key">
+                            key
+                        </a>
+            </li>
+            <li class="tab-item" id="toggle_option">
+                <a href="#options">
+                            option
+                </a>
+            </li>
+        </ul>
+
+        <!-- zone area-->
+        <section id="zone_area">
+            <article class="card col-6">
+                <div class="card-header">
+                    <h4 class="card-title">Zone1</h4>
+                    <form>
+                        <!-- form -->
+                        <div class="form-group">
+                            <label class="form-label" for="input-example-1">domain name</label>
+                            <input class="form-input" type="text" id="input-example-1" placeholder="example.com" />
+                            <label class="form-label" for="input-example-1">ip</label>
+                            <input class="form-input" type="text" id="input-example-1" placeholder="xxx.xxx.xxx.xxx" />
+                            <input type="checkbox" /> <i class="form-icon"></i>CNAME</br>
+                            <input class="form-input" type="text" id="input-example-1" placeholder="example.com" />
+                            <input type="checkbox" /> <i class="form-icon"></i>Receiv Mail Server ip</br>
+                            <input class="form-input col-6" type="text" id="input-example-1" placeholder="mx1.example.com" />
+                            <input type="checkbox" /> <i class="form-icon"></i>Send Mail server</br>
+                            <input class="form-input" type="text" id="input-example-1" placeholder="xxx.xxx.xxx" />
+                        </div>
+                    </form>
+                    <button id="del-acl-button" class="btn btn-sm">-</button>
+                </div>
+            </article>
+            <button class="btn btn-sm" id="add-acl-button">+</button>
+        </section>
+
+        <!-- acl area-->
+        <section id="acl_area">
+            <article class="card col-6">
+                <div class="card-header">
+                    <h4 class="card-title">Access Contole List</h4>
+                    <form>
+                        <!-- form -->
+                        <div class="form-group">
+                            <label class="form-label" for="input-example-1">List Name</label>
+                            <input class="form-input" type="text" id="input-example-1" placeholder="example.com" />
+                            <label class="form-label" for="input-example-1">IPs</label>
+                            <input class="form-input" type="text" id="input-example-1" placeholder="xxx.xxx.xxx.xxx,xxx.xxx.xxx.xxx" />
+                            <button class="btn btn-sm" id="add-acl-button">-</button>&nbsp
+                        </div>
+                    </form>
+                </div>
+            </article>
+            <button id="del-acl-button" class="btn btn-sm">+</button>
+        </section>
+
+        <!-- key area-->
+        <section id="key_area">
+            <article class="card col-6">
+                <div class="card-header">
+                    <h4 class="card-title">key display</h4>
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label" for="input-example-1">RNDC key</label>
+                            <input class="form-input" type="text" id="input-example-1" />
+                            <input type="checkbox" /><i class="form-icon"></i>regenerate</br>
+                            <label class="form-label" for="input-example-1">TSIG key</label>
+                            <input class="form-input" type="text" id="input-example-1" />
+                            <input type="checkbox" /><i class="form-icon"></i>regenerate</br>
+                            <label class="form-label" for="input-example-1">Dynamic Update key</label>
+                            <input class="form-input" type="text" id="input-example-1" />
+                            <input type="checkbox" /><i class="form-icon"></i>regenerate</br>
+                        </div>
+                    </form>
+                </div>
+            </article>
+        </section>
+
+        <!-- option area-->
+        <section id="option_area" class="visible">
+            <article class="card col-6">
+                <div class="card-header">
+                    <h4 class="card-title">Options</h4>
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label" for="input-example-1">Interface for maintenance</label>
+                            <input class="form-input" type="text" id="input-example-1"placeholder="xxx.xxx.xxx.xxx" />
+                            <label class="form-label" for="input-example-1">TSIG key</label>
+                            <input class="form-input" type="text" id="input-example-1" />
+                            <label class="form-label" for="input-example-1">Dynamic Update key</label>
+                            <input class="form-input" type="text" id="input-example-1" />
+                        </div>
+                    </form>
+                </div>
+            </article>
+        </section>
+</body>
+
+</html>
