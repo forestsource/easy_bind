@@ -50,6 +50,15 @@
                     <form>
                         <!-- form -->
                         <div class="form-group">
+                            <label class="form-label" for="input-example-1">ACL Name</label>
+                            <select name="acl">
+                            <option value="1">
+                              localhost
+                            </option>
+                            <option value="2">
+                            internal
+                              </option>
+                            </select>
                             <label class="form-label" for="input-example-1">domain name</label>
                             <input class="form-input" type="text" id="input-example-1" placeholder="example.com" />
                             <label class="form-label" for="input-example-1">ip</label>
@@ -118,11 +127,11 @@
                     <form>
                         <div class="form-group">
                             <label class="form-label" for="input-example-1">Interface for maintenance</label>
-                            <input class="form-input" type="text" id="input-example-1"placeholder="xxx.xxx.xxx.xxx" />
-                            <label class="form-label" for="input-example-1">TSIG key</label>
-                            <input class="form-input" type="text" id="input-example-1" />
-                            <label class="form-label" for="input-example-1">Dynamic Update key</label>
-                            <input class="form-input" type="text" id="input-example-1" />
+                            <input class="form-input" type="text" id="input-example-1" placeholder="xxx.xxx.xxx.xxx" />
+                            <label class="form-label" for="input-example-1">RNDC Port</label>
+                            <input class="form-input" type="text" id="input-example-1" placeholder="default:953" />
+                            <label class="form-label" for="input-example-1">memory chache size</label>
+                            <input class="form-input" type="text" id="input-example-1" placeholder="10MB" />
                         </div>
                     </form>
                 </div>
