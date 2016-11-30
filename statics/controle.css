@@ -1,6 +1,20 @@
 section{
   display: none;
+  width: 100%;
 }
 section.visible{
   display:block;
+}
+#config{
+  margin-left: 10px;
+}
+textarea{
+  width:100%;
+  height: 100%;
+}
+ul{
+  width: 100%;
+}
+li{
+  width:100%;
 }

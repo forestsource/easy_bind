@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container column col-10">
         <h1>bind settings</h1>
         <div class="form-group">
             <label class="form-switch">
@@ -19,124 +19,132 @@
             <i class="form-icon"></i> toggle External , Internal
         </label>
         </div>
-        <ul class="tab inline-flex">
-            <li class="tab-item active " id="toggle_zone">
-                <a href="#zone">
+        <div id="main-content" class="columns">
+            <div id="input-info" class="col-6">
+                <ul class="tab inline-flex ">
+                    <li class="tab-item active " id="toggle_zone">
+                        <a href="#zone">
                             zone
                         </a>
-            </li>
-            <li class="tab-item" id="toggle_acl">
-                <a href="#acl">
+                    </li>
+                    <li class="tab-item" id="toggle_acl">
+                        <a href="#acl">
                             acl
                         </a>
-            </li>
-            <li class="tab-item" id="toggle_key">
-                <a href="#key">
+                    </li>
+                    <li class="tab-item" id="toggle_key">
+                        <a href="#key">
                             key
                         </a>
-            </li>
-            <li class="tab-item" id="toggle_option">
-                <a href="#options">
+                    </li>
+                    <li class="tab-item" id="toggle_option">
+                        <a href="#options">
                             option
                 </a>
-            </li>
-        </ul>
+                    </li>
+                </ul>
+                <div id="left">
+                    <!-- zone area-->
+                    <section id="zone_area" class="visible">
+                        <article class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Zone1</h4>
+                                <!-- form -->
+                                <div class="form-group">
+                                    <label class="form-label" for="input-example-1">ACL Name</label>
+                                    <select name="acl" id="zone-acl">
+                                          <option value="1">
+                                              external
+                                          </option>
+                                          <option value="2">
+                                              internal
+                                          </option>
+                                    </select>
+                                    <div class="zone-input">
+                                        <label class="form-label" for="input-example-1">domain name</label>
+                                        <input class="form-input zone-domain-value" placeholder="example.com" />
+                                        <label class="form-label" for="input-example-1">ip</label>
+                                        <input class="form-input zone-ip-value" type="text" placeholder="xxx.xxx.xxx.xxx" />
+                                        <input type="checkbox" class="zone-cname-check"/> <i class="form-icon"></i>CNAME</br>
+                                        <input class="form-input zone-cname-value" type="text" id="input-example-1" placeholder="example.com" />
+                                        <input type="checkbox" class="zone-receive-check"/> <i class="form-icon"></i>Receiv Mail Server ip</br>
+                                        <input class="form-input zone-receive-mail" type="text" id="input-example-1" placeholder="mx1.example.com" />
+                                        <input type="checkbox" class="zone-send-check"/> <i class="form-icon"></i>Send Mail server</br>
+                                        <input class="form-input zone-send-mail" type="text" placeholder="xxx.xxx.xxx" />
+                                        <div class="btn btn-sm del-zone-button">-</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <div class="btn btn-sm" id="add-zone-button">+</div>
+                    </section>
 
-        <!-- zone area-->
-        <section id="zone_area">
-            <article class="card col-6">
-                <div class="card-header">
-                    <h4 class="card-title">Zone1</h4>
-                    <form>
-                        <!-- form -->
-                        <div class="form-group">
-                            <label class="form-label" for="input-example-1">ACL Name</label>
-                            <select name="acl">
-                            <option value="1">
-                              localhost
-                            </option>
-                            <option value="2">
-                            internal
-                              </option>
-                            </select>
-                            <label class="form-label" for="input-example-1">domain name</label>
-                            <input class="form-input" type="text" id="input-example-1" placeholder="example.com" />
-                            <label class="form-label" for="input-example-1">ip</label>
-                            <input class="form-input" type="text" id="input-example-1" placeholder="xxx.xxx.xxx.xxx" />
-                            <input type="checkbox" /> <i class="form-icon"></i>CNAME</br>
-                            <input class="form-input" type="text" id="input-example-1" placeholder="example.com" />
-                            <input type="checkbox" /> <i class="form-icon"></i>Receiv Mail Server ip</br>
-                            <input class="form-input col-6" type="text" id="input-example-1" placeholder="mx1.example.com" />
-                            <input type="checkbox" /> <i class="form-icon"></i>Send Mail server</br>
-                            <input class="form-input" type="text" id="input-example-1" placeholder="xxx.xxx.xxx" />
-                        </div>
-                    </form>
-                    <button id="del-acl-button" class="btn btn-sm">-</button>
-                </div>
-            </article>
-            <button class="btn btn-sm" id="add-acl-button">+</button>
-        </section>
+                    <!-- acl area-->
+                    <section id="acl_area">
+                        <article class="card acl">
+                            <div class="card-header">
+                                <h4 id="acl-head" class="card-title">Access Contole List</h4>
+                                <!-- form -->
+                                <div class="form-group acl-input">
+                                    <label class="form-label" for="input-example-1">List Name</label>
+                                    <input class="form-input acl-list-name" type="text" placeholder="example.com" />
+                                    <label class="form-label" for="input-example-1">IPs</label>
+                                    <input class="form-input acl-ip-values" type="text" placeholder="xxx.xxx.xxx.xxx,xxx.xxx.xxx.xxx" />
+                                    <div class="btn btn-sm del-acl-button">-</div>&nbsp
+                                </div>
+                            </div>
+                        </article>
+                        <div id="add-acl-button" class="btn btn-sm">+</div>
+                    </section>
 
-        <!-- acl area-->
-        <section id="acl_area">
-            <article class="card col-6">
-                <div class="card-header">
-                    <h4 class="card-title">Access Contole List</h4>
-                    <form>
-                        <!-- form -->
-                        <div class="form-group">
-                            <label class="form-label" for="input-example-1">List Name</label>
-                            <input class="form-input" type="text" id="input-example-1" placeholder="example.com" />
-                            <label class="form-label" for="input-example-1">IPs</label>
-                            <input class="form-input" type="text" id="input-example-1" placeholder="xxx.xxx.xxx.xxx,xxx.xxx.xxx.xxx" />
-                            <button class="btn btn-sm" id="add-acl-button">-</button>&nbsp
-                        </div>
-                    </form>
-                </div>
-            </article>
-            <button id="del-acl-button" class="btn btn-sm">+</button>
-        </section>
+                    <!-- key area-->
+                    <section id="key_area">
+                        <article class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">key display</h4>
+                                <div class="form-group">
+                                    <label class="form-label" for="input-example-1">RNDC key</label>
+                                    <input id="rndc-key"class="form-input" type="text" readonly="readonly" />
+                                    <input id="rndc-regen" type="checkbox" /><i class="form-icon"></i>regenerate</br>
+                                    <label class="form-label" for="input-example-1">TSIG key</label>
+                                    <input id="tsig-key" class="form-input" type="text" readonly="readonly" />
+                                    <input id="tsig-regen" type="checkbox" /><i class="form-icon"></i>regenerate</br>
+                                    <label class="form-label" for="input-example-1">Dynamic Update key</label>
+                                    <input id="update-key" class="form-input" type="text" readonly="readonly" />
+                                    <input id="update-regen" type="checkbox" /><i class="form-icon"></i>regenerate</br>
+                                </div>
+                            </div>
+                        </article>
+                    </section>
 
-        <!-- key area-->
-        <section id="key_area">
-            <article class="card col-6">
-                <div class="card-header">
-                    <h4 class="card-title">key display</h4>
-                    <form>
-                        <div class="form-group">
-                            <label class="form-label" for="input-example-1">RNDC key</label>
-                            <input class="form-input" type="text" id="input-example-1" />
-                            <input type="checkbox" /><i class="form-icon"></i>regenerate</br>
-                            <label class="form-label" for="input-example-1">TSIG key</label>
-                            <input class="form-input" type="text" id="input-example-1" />
-                            <input type="checkbox" /><i class="form-icon"></i>regenerate</br>
-                            <label class="form-label" for="input-example-1">Dynamic Update key</label>
-                            <input class="form-input" type="text" id="input-example-1" />
-                            <input type="checkbox" /><i class="form-icon"></i>regenerate</br>
-                        </div>
-                    </form>
-                </div>
-            </article>
-        </section>
+                    <!-- option area-->
+                    <section id="option_area" >
+                        <article class="card ">
+                            <div class="card-header">
+                                <h4 class="card-title">Options</h4>
+                                <div class="form-group">
+                                    <label class="form-label" for="input-example-1">Interface for maintenance</label>
+                                    <input class="form-input" type="text" id="maintenace-ip" placeholder="xxx.xxx.xxx.xxx" />
+                                    <label class="form-label" for="input-example-1">RNDC Port</label>
+                                    <input class="form-input" type="text" id="rndc-port" placeholder="default:953" />
+                                    <label class="form-label" for="input-example-1">memory chache size</label>
+                                    <input class="form-input" type="text" id="chache-size" placeholder="10MB" />
+                                </div>
+                            </div>
+                        </article>
+                    </section>
 
-        <!-- option area-->
-        <section id="option_area" class="visible">
-            <article class="card col-6">
-                <div class="card-header">
-                    <h4 class="card-title">Options</h4>
-                    <form>
-                        <div class="form-group">
-                            <label class="form-label" for="input-example-1">Interface for maintenance</label>
-                            <input class="form-input" type="text" id="input-example-1" placeholder="xxx.xxx.xxx.xxx" />
-                            <label class="form-label" for="input-example-1">RNDC Port</label>
-                            <input class="form-input" type="text" id="input-example-1" placeholder="default:953" />
-                            <label class="form-label" for="input-example-1">memory chache size</label>
-                            <input class="form-input" type="text" id="input-example-1" placeholder="10MB" />
-                        </div>
-                    </form>
+                    <div id="make-button" class="btn">make config</div>
                 </div>
-            </article>
-        </section>
+                <!-- left -->
+            </div>
+            <!-- display area-->
+            <div id="config" class="col-4">
+                <label>config</label>
+                <textarea id="config-area" placeholder="config is here"></textarea>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

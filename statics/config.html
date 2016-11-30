@@ -1,0 +1,43 @@
+key "rndc-key" {
+    algorithm hmac-md5;
+    secret "qpBt4e8VSpFLWdVkD0AlRRq=";
+};
+
+controls {
+    inet 127.0.0.1 port 953
+    allow { 127.0.0.1; } keys { "rndc-key"; };
+};
+
+options {
+    directory "/var/named";
+    allow-transfer { none}
+        {{.Ip1}};
+    allow-query {
+      any;
+    };
+    version "none";
+    recursion{no};
+    max-cache-size {{.chache-size}}
+
+};
+zone "." {
+    type hint;
+    file "root.cache";
+};
+
+zone "ryouto.jp" {　　　
+    type master;
+    file "ryouto.jp";
+    notify no;
+};
+
+zone "0.168.192.IN-ADDR.ARPA" {
+    type master;
+    file "192.168.0";
+    notify no;
+};
+
+zone "0.0.127.IN-ADDR.ARPA" {
+    type master;
+    file "named.local";
+};
