@@ -58,10 +58,12 @@ $(document).ready(function() {
 });
 
 function read_values() {
-    let data = {}
+    let data = {};
     //zone
-    $.each($(".zone-input"), function(i, val) {
-        let zone = {}
+    let zones = {};
+    let num=0;
+    $.each($(".zone-input"), (i, val)=> {
+        let zone = {};
         zone.domain = $(val).children(".zone-domain-value").val();
         zone.ip = $(val).children(".zone-ip-value").val();
         if ($(val).children(".zone-cname-check").prop("checked")) {
@@ -74,16 +76,22 @@ function read_values() {
             zone.smail = $(val).children(".zone-send-mail").val();
         }
         data["zone"+i] = zone
+        ++num;
         console.log(i,zone)//debug
     })
+    data.zone_num = num;
     //acl
-    $.each($(".acl-input"), function(i, val) {
+    let acls = {};
+    num=0;
+    $.each($(".acl-input"), (i, val) => {
         let acl = {}
         acl.domain = $(val).children(".acl-list-name").val();
         acl.ips = $(val).children(".acl-ip-values").val();
         data["acl"+i] = acl
         console.log(i,acl)//debug
+        ++num
     })
+    data.acl_num = num;
     //key
     let key = {}
     key.rndc = ($("#rndc-regen").prop("checked")) ? true : false;
