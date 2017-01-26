@@ -50,9 +50,10 @@ $(document).ready(function() {
             dataType: 'html',
             scriptCharset: 'utf-8'
         }).done(function(data) { // Success
-            $("#config-area").html(data);
+            console.info(data)
+            $("#config-area").val(data);
         }).fail(function(data) { // Error
-            $("#config-area").html(data);
+            $("#config-area").val(data);
         });
     });
 });
@@ -85,7 +86,7 @@ function read_values() {
     num=0;
     $.each($(".acl-input"), (i, val) => {
         let acl = {}
-        acl.domain = $(val).children(".acl-list-name").val();
+        acl.listname = $(val).children(".acl-list-name").val();
         acl.ips = $(val).children(".acl-ip-values").val();
         data["acl"+i] = acl
         console.log(i,acl)//debug
@@ -128,9 +129,9 @@ function StaticString() {
         '</div>'
     this.acl = '<div class="form-group acl-input">' +
         '<label class="form-label" for="input-example-1">List Name</label>' +
-        '<input class="form-input" type="text" id="input-example-1" placeholder="example.com" />' +
+        '<input class="form-input acl-list-name" type="text"  placeholder="example.com" />' +
         '<label class="form-label" for="input-example-1">IPs</label>' +
-        '<input class="form-input" type="text" id="input-example-1" placeholder="xxx.xxx.xxx.xxx,xxx.xxx.xxx.xxx" />' +
+        '<input class="form-input acl-ip-values" type="text"  placeholder="xxx.xxx.xxx.xxx,xxx.xxx.xxx.xxx" />' +
         '<div class="btn btn-sm del-acl-button">-</div>&nbsp' +
         '</div>'
     this.option = ''
