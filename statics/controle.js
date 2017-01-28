@@ -1,6 +1,20 @@
 "use strict"
 
 $(document).ready(function() {
+    $("#switch-resolver").on("click", function() {
+      if($("#switch-resolver").hasClass("active")){
+        $("#switch-resolver").removeClass("active");
+      }else{
+        $("#switch-resolver").addClass("active");
+      }
+    });
+    $("#switch-slave").on("click", function() {
+      if($("#switch-slave").hasClass("active")){
+        $("#switch-slave").removeClass("active");
+      }else{
+        $("#switch-slave").addClass("active");
+      }
+    });
     $("#toggle_zone").on("click", function() {
         $(".tab-item.active").removeClass("active");
         $("section.visible").removeClass("visible");
@@ -32,7 +46,7 @@ $(document).ready(function() {
         $(this).parent().remove();
     });
     $("#add-zone-button").on("click", function() {
-        $("#zone-acl").after(ss.zone);
+        $(".zone-input").after(ss.zone);
     });
     $("#add-acl-button").on("click", function() {
         $("#acl-head").after(ss.acl);
@@ -60,21 +74,22 @@ $(document).ready(function() {
 
 function read_values() {
     let data = {};
+    //toggle
+    data.isResolver = $("#switch-resolver").hasClass("active")
+    data.isSlave = $("#switch-slave").hasClass("active")
     //zone
     let zones = {};
     let num=0;
     $.each($(".zone-input"), (i, val)=> {
         let zone = {};
-        zone.domain = $(val).children(".zone-domain-value").val();
+        zone.domain = $(val).children(".zone-acl").val();
         zone.ip = $(val).children(".zone-ip-value").val();
         if ($(val).children(".zone-cname-check").prop("checked")) {
             zone.cname = $(val).children(".zone-cname-value").val();
         }
-        if ($(val).children(".zone-receive-check").prop("checked")) {
-            zone.rmail = $(val).children(".zone-receive-mail").val();
-        }
-        if ($(val).children(".zone-send-check").prop("checked")) {
-            zone.smail = $(val).children(".zone-send-mail").val();
+        zone.amail = $(val).children(".zone-admin-value").val();
+        if ($(val).children(".is-mail-sever").prop("checked")) {
+            zone.isMailServer = "true"
         }
         data["zone"+i] = zone
         ++num;
@@ -104,7 +119,13 @@ function read_values() {
     let option = {}
     option.ip = $("#maintenance-ip").val();
     option.port = $("#rndc-port").val();
-    option.memory= $("#chache-size").val();
+    option.memory= $("#memory-size").val();
+    option.isQsyn = ($("#quick-synchronized").prop("checked")) ? true : false;
+    option.isMreduce = ($("#memory-reduce").prop("checked")) ? true : false;
+    option.isEdns = ($("#edns").prop("checked")) ? true : false;
+    option.isResolver = ($("#switch-resolver").hasClass("active")) ? true : false;
+    option.isSlave = ($("#switch-slave").hasClass("active")) ? true : false;
+    option.forwardIp = $("#forward-ip").val();
     data.option = option;
     console.log(option)//debug
     console.log("==");//debug
@@ -115,16 +136,15 @@ var ss = new StaticString()
 
 function StaticString() {
     this.zone = '<div class="zone-input">' +
-        '<label class="form-label" for="input-example-1">domain name</label>' +
-        '<input class="form-input" type="text" id="input-example-1" placeholder="example.com" />' +
+        '<label class="form-label" for="input-example-1">acl</label>' +
+        '<input class="form-input zone-acl" type="text" placeholder="internal" />' +
         '<label class="form-label" for="input-example-1">ip</label>' +
-        '<input class="form-input" type="text" id="input-example-1" placeholder="xxx.xxx.xxx.xxx" />' +
+        '<input class="form-input zone-ip-value" type="text" id="input-example-1" placeholder="xxx.xxx.xxx.xxx" />' +
         '<input type="checkbox" /> <i class="form-icon"></i>CNAME</br>' +
-        '<input class="form-input" type="text" id="input-example-1" placeholder="example.com" />' +
-        '<input type="checkbox" /> <i class="form-icon"></i>Receiv Mail Server ip</br>' +
-        '<input class="form-input " type="text" id="input-example-1" placeholder="mx1.example.com" />' +
-        '<input type="checkbox" /> <i class="form-icon"></i>Send Mail server</br>' +
-        '<input class="form-input" type="text" id="input-example-1" placeholder="xxx.xxx.xxx" />' +
+        '<input class="form-input zone-cname-value" type="text" id="input-example-1" placeholder="example.com" />' +
+        '<label class"form-label">Adminstrator mail adress ip</label></br>' +
+        '<input class="form-input zone-admin-value" type="text" id="admin-mail" placeholder="admin@sample.com" />' +
+        '<input type="checkbox" class="is-mail-sever"/> <i class="form-icon"></i>Mail Server</br>'+
         '<div class="btn btn-sm del-zone-button">-</div>' +
         '</div>'
     this.acl = '<div class="form-group acl-input">' +

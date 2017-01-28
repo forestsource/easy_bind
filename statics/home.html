@@ -14,10 +14,12 @@
     <div class="container column col-10">
         <h1>BIND settings</h1>
         <div class="form-group">
-            <label class="form-switch">
-            <input type="checkbox" />
-            <i class="form-icon"></i> toggle External , Internal
-        </label>
+          <label class="form-switch" >
+            <input type="checkbox" id="switch-resolver"/><i class="form-icon"></i> FullResolver
+          </label>
+          <label class="form-switch" >
+            <input type="checkbox" id="switch-slave"/><i class="form-icon"></i> Slave Server
+          </label>
         </div>
         <div id="main-content" class="columns">
             <div id="input-info" class="col-6">
@@ -51,26 +53,18 @@
                                 <h4 class="card-title">Zone1</h4>
                                 <!-- form -->
                                 <div class="form-group">
-                                    <label class="form-label" for="input-example-1">ACL Name</label>
-                                    <select name="acl" id="zone-acl">
-                                          <option value="1">
-                                              external
-                                          </option>
-                                          <option value="2">
-                                              internal
-                                          </option>
-                                    </select>
                                     <div class="zone-input">
+                                        <label class="form-label" for="input-example-1">acl</label>
+                                        <input class="form-input zone-acl" placeholder="internal" />
                                         <label class="form-label" for="input-example-1">domain name</label>
                                         <input class="form-input zone-domain-value" placeholder="example.com" />
                                         <label class="form-label" for="input-example-1">ip</label>
                                         <input class="form-input zone-ip-value" type="text" placeholder="xxx.xxx.xxx.xxx" />
                                         <input type="checkbox" class="zone-cname-check"/> <i class="form-icon"></i>CNAME</br>
                                         <input class="form-input zone-cname-value" type="text" id="input-example-1" placeholder="example.com" />
-                                        <input type="checkbox" class="zone-receive-check"/> <i class="form-icon"></i>Receiv Mail Server ip</br>
-                                        <input class="form-input zone-receive-mail" type="text" id="input-example-1" placeholder="mx1.example.com" />
-                                        <input type="checkbox" class="zone-send-check"/> <i class="form-icon"></i>Send Mail server</br>
-                                        <input class="form-input zone-send-mail" type="text" placeholder="xxx.xxx.xxx" />
+                                        <label class"form-label">Adminstrator mail adress ip</label>
+                                        <input class="form-input zone-admin-value" type="text" id="admin-mail" placeholder="admin@sample.com" />
+                                        <input type="checkbox" class="is-mail-sever"/> <i class="form-icon"></i>Mail Server</br>
                                         <div class="btn btn-sm del-zone-button">-</div>
                                     </div>
                                 </div>
@@ -123,12 +117,19 @@
                             <div class="card-header">
                                 <h4 class="card-title">Options</h4>
                                 <div class="form-group">
-                                    <label class="form-label" for="input-example-1">Interface for maintenance</label>
-                                    <input class="form-input" type="text" id="maintenace-ip" placeholder="xxx.xxx.xxx.xxx" />
+                                    <label class="form-label" for="input-example-1">maintenance ip</label>
+                                    <input class="form-input" type="text" id="maintenance-ip" placeholder="xxx.xxx.xxx.xxx" />
+                                    <label class="form-label" for="input-example-1">ISP DNS server ip</label>
+                                    <input class="form-input" type="text" id="forward-ip" placeholder="xxx.xxx.xxx.xxx" />
                                     <label class="form-label" for="input-example-1">RNDC Port</label>
                                     <input class="form-input" type="text" id="rndc-port" placeholder="default:953" />
-                                    <label class="form-label" for="input-example-1">memory chache size</label>
-                                    <input class="form-input" type="text" id="chache-size" placeholder="10MB" />
+                                    <label class="form-label" for="input-example-1">memory size(MB)</label>
+                                    <input class="form-input" type="text" id="memory-size" placeholder="10MB" />
+                                    <input id="quick-synchronized" type="checkbox" /><i class="form-icon">quick synchronized</i>
+                                      <img src="statics/question.png" title="Resynchronize resources faster."></br>
+                                    <input id="memory-reduce" type="checkbox" /><i class="form-icon">reduce memory usage</i></br>
+                                    <input id="edns" type="checkbox" /><i class="form-icon">reduce multiple response(you haves many zones).  ※not recommend</i>
+                                      <img src="statics/question.png" title="You may turn on if too slow response and you have many zones.But,you have a few risks."></br>
                                 </div>
                             </div>
                         </article>
